@@ -17,8 +17,12 @@ rating = pd.read_csv('../data/rating.csv')
 bokuanimedenimed = [5114, 121, 31772, 31704, 30276, 34134, 16498, 31964, 33486, 25777, 199, 164, 1535, 431, 11757, 20]
 bokuanimederatingud = [10, 8, 8, 10, 10, 7, 10, 10, 10, 8, 10, 10, 10, 10, 4, 6]
 
+
 #bokuanimedenimed = [32281, 28851, 16782, 199, 1689]
 #bokuanimederatingud = [10, 8, 7, 10, 10]
+
+bokuanimedenimed = [16498, 263, 14719 ]
+bokuanimederatingud = [8, 6, 8]
 
 #print(len(rating))
 for i in range(len(bokuanimederatingud)):
@@ -76,6 +80,9 @@ def leidaparimanime(kasutajad, algkasutajavaadatud):
     pd.set_option('display.max_colwidth', None)
     pd.set_option('display.max_columns', None)
     pd.set_option('display.width', None)
+    '''for i in dictSorted:
+    	if i[1] > 2:
+    		print(anime[anime['anime_id'] == i[0]])'''
     print(anime[anime['anime_id'] == dictSorted[0][0]])
 
 

@@ -5,6 +5,7 @@ import seaborn as sns
 import math
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+import itertools
 
 
 def MSE(y_target, y_pred):
@@ -22,18 +23,20 @@ def clean_dataset(df):
 
 anime = pd.read_csv('../data/anime.csv')
 
-print(len(anime.genre.unique()))
+#The genre value is stored as a String which means we have to
+#revalue every value as a list where each item is a genre type the anime has
+anime['genre'] = anime['genre'].str.replace(" ", "")
+anime['genre'] = anime['genre'].str.split(",")
+anime = anime.dropna() #Data cleaning
 
-uni = anime.type.unique()
+test = set(itertools.chain.from_iterable(anime.genre))
+print(test)
+print(pd.get_dummies(pd.DataFrame(anime.genre)).head())
 
-uni = np.delete(uni, 6)
-
-anime = anime.drop(anime[anime.type.isin(uni) == False].index)
-
-
+print(anime.type.head())
 data = pd.DataFrame(anime.type)
 data = pd.get_dummies(data)
-#print(data.head(5))
+print(data.head(5))
 
 anime = anime[['episodes', 'members', 'rating']]
 
