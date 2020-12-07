@@ -24,15 +24,15 @@ def clean_dataset(df):
 anime = pd.read_csv('../data/rating.csv')
 
 
-k = anime['user_id'] == 1
+k = anime['user_id'] == 3624
 
-l =  anime['rating'] != -1anime
+l =  anime['rating'] != -1
 
 r = anime[k & l]
 
 print(r)
 
-k = anime['user_id'] == 7
+'''k = anime['user_id'] == 7
 r = r['anime_id'].tolist()
 l = anime[anime['anime_id'] == 15451 & anime['user_id'] == 69976] 
 
@@ -40,4 +40,4 @@ print(l)
 
 print(anime(k & l))
 anime
-#kimi no na wa 32281 10, a silent voice 28851 8, the garden of words 16782 7, spirited away 199 10, 5 centimeters per second 1689 10, 
+#kimi no na wa 32281 10, a silent voice 28851 8, the garden of words 16782 7, spirited away 199 10, 5 centimeters per second 1689 10, '''

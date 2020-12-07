@@ -29,18 +29,34 @@ anime['genre'] = anime['genre'].str.replace(" ", "")
 anime['genre'] = anime['genre'].str.split(",")
 anime = anime.dropna() #Data cleaning
 
-test = set(itertools.chain.from_iterable(anime.genre))
-print(test)
-print(pd.get_dummies(pd.DataFrame(anime.genre)).head())
+genres = set(itertools.chain.from_iterable(anime.genre))
 
-print(anime.type.head())
+#I store every anime genre values as 1 and 0 in this list separated by genre 
+#And then later I create a dataframe of it to place the original genre columns because prediction algorithm doesn't know how to distinguish lists and strings
+animeGenresInNumerical = []
+
+for i, r in anime.iterrows():
+	genreNumeric = []
+	for g in genres:
+		if g in r['genre']:
+			genreNumeric.append(1)
+		else:
+			genreNumeric.append(0)	
+	animeGenresInNumerical.append(genreNumeric)
+
+genreDataFrame = pd.DataFrame(animeGenresInNumerical, columns=genres)
+#print(genreDataFrame.head(5))
+#print(anime.genre.head(5))
+
+#print(anime.type.head())
 data = pd.DataFrame(anime.type)
 data = pd.get_dummies(data)
-print(data.head(5))
+#print(data.head(5))
 
 anime = anime[['episodes', 'members', 'rating']]
 
 anime = anime.join(data)
+anime = anime.join(genreDataFrame)
 
 print(anime.head(5))
 
@@ -58,7 +74,7 @@ reg2 = reg.predict(X_test)
 
 print(MSE(y_test.array, reg2))
 
-r = reg.predict([[949.0, 504862.0, 0, 0, 0, 0, 0, 1]])
-r = reg.predict([[12.0, 140604.0, 0, 0, 0, 0, 0, 1]])
+#r = reg.predict([[949.0, 504862.0, 0, 0, 0, 0, 0, 1]])
+#r = reg.predict([[12.0, 140604.0, 0, 0, 0, 0, 0, 1]])
 
-print(r)
+#print(r)

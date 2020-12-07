@@ -18,11 +18,11 @@ bokuanimedenimed = [5114, 121, 31772, 31704, 30276, 34134, 16498, 31964, 33486, 
 bokuanimederatingud = [10, 8, 8, 10, 10, 7, 10, 10, 10, 8, 10, 10, 10, 10, 4, 6]
 
 
-#bokuanimedenimed = [32281, 28851, 16782, 199, 1689]
-#bokuanimederatingud = [10, 8, 7, 10, 10]
+bokuanimedenimed = [32281, 28851, 16782, 199, 1689]
+bokuanimederatingud = [3, 4, 2, 3, 5]
 
-bokuanimedenimed = [16498, 263, 14719 ]
-bokuanimederatingud = [8, 6, 8]
+bokuanimedenimed = [8460, 17895]
+bokuanimederatingud = [10, 8]
 
 #print(len(rating))
 for i in range(len(bokuanimederatingud)):
