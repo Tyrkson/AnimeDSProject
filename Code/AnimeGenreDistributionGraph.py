@@ -30,6 +30,10 @@ genreCounts = sorted(genreCounts.items(), key=lambda item: item[1])
 #Creating the horizontal bar plot
 fig, ax = plt.subplots()
 
+fig = plt.figure(figsize=(12,6))
+
+ax = fig.add_axes([0.13, 0.1, 0.8, 0.8])
+
 genres = []
 counts = []
 
@@ -38,15 +42,28 @@ counts = []
 [counts.append(i[1]) for i in genreCounts]
 
 y_pos = np.arange(len(genres))
-performance = 5 + 11 * np.random.rand(len(genres))
 
+#We used this color for our plot to present it on poster
+baseColor = "white"
 
+#to inspect plot from the program output uncomment the following line
+#baseColor = 'black'
 
-ax.barh(y_pos, counts, align='center')
+ax.barh(y_pos, counts, align='center', color="yellow")
 ax.set_yticks(y_pos)
 ax.set_yticklabels(genres)
+ax.spines['left'].set_color(baseColor)
+ax.spines['right'].set_color(baseColor)
+ax.spines['top'].set_color(baseColor)
+ax.spines['bottom'].set_color(baseColor)
+ax.tick_params(axis='y', colors=baseColor)
+ax.tick_params(axis='x', colors=baseColor)
+ax.get_children()[5].set_color([50/255, 168/255, 82/255])
+
 ax.invert_yaxis()  # labels read top-to-bottom
-ax.set_xlabel('Genre Count')
-ax.set_title("Genres popularity")
+#ax.set_xlabel('Genre Count')
+#ax.set_title("Genres popularity")
 
 plt.show()
+
+#plt.savefig('plot.png', transparent=True, dpi=550)
