@@ -40,17 +40,17 @@ for i in criticalUsers:
 #Sorting dictionary and getting a list of tuples
 animeCounts = sorted(animeDict.items(), key=lambda item: item[1], reverse=True)
 				
-'''for i in range(len(animeCounts)):
-	if i > 10:
+for i in range(len(animeCounts)):
+	if i > 15:
 		break
-	print(anime[anime['anime_id'] == animeCounts[i][0]][['name', 'rating']].to_string(index=False))'''
+	print("Length: ", animeCounts[i][1]," ", anime[anime['anime_id'] == animeCounts[i][0]][['name', 'rating']].to_string(index=False))
 	
 animeIds = []
 
-for i in range(len(animeCounts)):
+'''for i in range(len(animeCounts)):
 	if i > 10:
 		break
 	animeIds.append(animeCounts[i][0])
 
 r = anime[anime['anime_id'].isin(animeIds)][['name','rating']]
-print(r)
+print(r)'''

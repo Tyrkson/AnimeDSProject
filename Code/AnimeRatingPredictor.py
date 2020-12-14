@@ -21,7 +21,21 @@ def clean_dataset(df):
     indices_to_keep = ~df.isin([np.nan, np.inf, -np.inf]).any(1)
     return df[indices_to_keep].astype(np.float64)
 
+#This method helps to convert user input (anime genres) into a list of 0's and 1's
+#where 1 means anime has this genre and 0 means it hasn't
+def genresToBinaryForm(genres, template):
+    bGenres = []
+
+    for i in template:
+        if i in genres:
+            bGenres.append(1)
+        else:
+            bGenres.append(0)
+
+    return bGenres
+
 anime = pd.read_csv('../data/anime.csv')
+anime = anime.drop(anime[anime['genre'] == 'hentai'].index)
 
 #The genre value is stored as a String which means we have to
 #revalue every value as a list where each item is a genre type the anime has
@@ -58,7 +72,7 @@ anime = anime[['episodes', 'members', 'rating']]
 anime = anime.join(data)
 anime = anime.join(genreDataFrame)
 
-print(anime.head(5))
+#print(anime.head(5))
 
 #Data cleaning
 anime = anime.drop(anime[anime.episodes == "Unknown"].index)
@@ -70,11 +84,19 @@ X_train, X_test, y_train, y_test = train_test_split(anime.loc[:, anime.columns !
 
 reg = LinearRegression().fit(X_train, y_train)
 
+
 reg2 = reg.predict(X_test)
 
 print(MSE(y_test.array, reg2))
 
-#r = reg.predict([[949.0, 504862.0, 0, 0, 0, 0, 0, 1]])
-#r = reg.predict([[12.0, 140604.0, 0, 0, 0, 0, 0, 1]])
 
-#print(r)
+print(anime.columns.tolist())
+print()
+toPredictAnimeGenres = genresToBinaryForm(['Shoujo', 'Comdey', 'Drana', 'Romance'], genreDataFrame.columns.tolist())
+
+#Episodes, Members, Movie, ONA, OVA, Special, TV
+toPredictAnime = [25.0,  212687.0, 0, 0, 0, 0, 0, 1]
+toPredictAnime.extend(toPredictAnimeGenres)
+r = reg.predict([toPredictAnime])
+
+print(r)

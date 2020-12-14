@@ -32,7 +32,7 @@ fig, ax = plt.subplots()
 
 fig = plt.figure(figsize=(12,6))
 
-ax = fig.add_axes([0.13, 0.1, 0.8, 0.8])
+ax = fig.add_axes([0.13, 0.1, 0.8, 0.9])
 
 genres = []
 counts = []
@@ -40,6 +40,8 @@ counts = []
 #One liners to get the genre and count data separately
 [genres.append(i[0]) for i in genreCounts]
 [counts.append(i[1]) for i in genreCounts]
+print(genres)
+print(counts)
 
 y_pos = np.arange(len(genres))
 
@@ -47,7 +49,7 @@ y_pos = np.arange(len(genres))
 baseColor = "white"
 
 #to inspect plot from the program output uncomment the following line
-#baseColor = 'black'
+baseColor = 'black'
 
 ax.barh(y_pos, counts, align='center', color="yellow")
 ax.set_yticks(y_pos)
@@ -56,7 +58,7 @@ ax.spines['left'].set_color(baseColor)
 ax.spines['right'].set_color(baseColor)
 ax.spines['top'].set_color(baseColor)
 ax.spines['bottom'].set_color(baseColor)
-ax.tick_params(axis='y', colors=baseColor)
+ax.tick_params(axis='y', colors=baseColor,which="major", labelsize= 12)
 ax.tick_params(axis='x', colors=baseColor)
 ax.get_children()[5].set_color([50/255, 168/255, 82/255])
 
