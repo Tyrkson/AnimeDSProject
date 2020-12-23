@@ -9,4 +9,6 @@ Also we did some data analysing which results are on the poster file.
 Data is downloadaed from here
 https://www.kaggle.com/CooperUnion/anime-recommendations-database?select=anime.csv
 
+Promo video: https://www.youtube.com/watch?v=jm07mD1ltFk
+
 You have to store it in a folder called data to use our programs without modifications.
